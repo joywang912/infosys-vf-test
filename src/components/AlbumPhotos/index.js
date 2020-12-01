@@ -19,15 +19,19 @@ const AlbumPhotos = () => {
   }, [id]);
 
   return (
-    <div className="row" data-test="component-album-photos">
+    <div className="row album-photos" data-test="component-album-photos">
       {photos.map((photo) => {
         return (
           <div
             key={photo.id}
-            className="col-sm-3"
+            className="col-6 col-sm-3 col-lg-2 album-photos__item"
             data-test="album-photos-item"
           >
-            <button type="button" onClick={() => onImageSelect(photo)}>
+            <button
+              type="button"
+              className="album-photos__button"
+              onClick={() => onImageSelect(photo)}
+            >
               <img src={photo.thumbnailUrl} alt={photo.title} width="100%" />
             </button>
           </div>

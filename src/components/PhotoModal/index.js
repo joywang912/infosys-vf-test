@@ -8,12 +8,13 @@ const PhotoModal = (props) => {
   return (
     <Modal
       data-test="component-photo-modal"
+      dialogClassName="photo-modal"
       show={showPhotoModal}
       onHide={handleClose}
     >
-      <Modal.Body>
+      <div className="photo-modal__body">
         <img src={photoSelected.url} alt={photoSelected.title} />
-      </Modal.Body>
+      </div>
     </Modal>
   );
 };
