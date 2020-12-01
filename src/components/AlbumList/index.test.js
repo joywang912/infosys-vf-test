@@ -17,11 +17,6 @@ const albums = [
     id: 2,
     title: "sunt qui excepturi placeat culpa",
   },
-  {
-    userId: 1,
-    id: 3,
-    title: "omnis laborum odio",
-  },
 ];
 
 describe("Album List", () => {
@@ -34,7 +29,7 @@ describe("Album List", () => {
   test("album list with 2 items", () => {
     const wrapper = shallow(<AlbumList albums={albums} />);
     const albumItems = wrapper.find(`[data-test='album-list-item']`);
-    expect(albumItems.length).toBe(3);
+    expect(albumItems.length).toBe(2);
   });
 });
 
