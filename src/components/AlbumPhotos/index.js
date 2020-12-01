@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAlbumPhotos } from "../../actions/jsonPlaceholder";
+import PhotoModal from "../PhotoModal";
 
-const AlbumPhotos = (props) => {
+const AlbumPhotos = () => {
   const [photos, setPhotos] = useState([]);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [photoSelected, setPhotoSelected] = useState();
+
+  const onImageSelect = (photo) => {
+    setShowPhotoModal(true);
+    setPhotoSelected(photo);
+  };
+
   let { id } = useParams();
   useEffect(() => {
     getAlbumPhotos(id, setPhotos);
@@ -18,10 +27,19 @@ const AlbumPhotos = (props) => {
             className="col-sm-3"
             data-test="album-photos-item"
           >
-            <img src={photo.url} alt={photo.title} width="100%" />
+            <button type="button" onClick={() => onImageSelect(photo)}>
+              <img src={photo.thumbnailUrl} alt={photo.title} width="100%" />
+            </button>
           </div>
         );
       })}
+      {photoSelected && (
+        <PhotoModal
+          showPhotoModal={showPhotoModal}
+          setShowPhotoModal={setShowPhotoModal}
+          photoSelected={photoSelected}
+        />
+      )}
     </div>
   );
 };
